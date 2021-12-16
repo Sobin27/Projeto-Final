@@ -1,0 +1,27 @@
+{
+    "name": "jose.sobreira/projeto",
+    "description": "Projeto",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "JoseSobreira\\Projeto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jose Sobreira",
+            "email": "udreakjogos2@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^5.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Core\\": "core/"
+        },
+        "files": [
+            "Config.php"
+        ]
+    }
+}
