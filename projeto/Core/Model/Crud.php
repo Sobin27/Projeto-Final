@@ -38,10 +38,24 @@ class crud
 
     public function update()
     {
+        $cone = new Banco();
+        $parametros = [
+            ':Nome' => (trim($_POST['nome'])),
+            ':Idade' => (trim($_POST['idade'])),
+            ':Profissao' => (trim($_POST['profissao']))
+        ];
+
+        $cone->up("UPDATE informacoes SET Nome = :Nome, Idade = :Idade, Profissao = :Profissao", $parametros);
     }
 
     public function delete()
     {
+        $cone = new Banco();
+        $parametros = [
+            ':Nome' => (trim($_POST['nome'])),
+        ];
+
+        $cone->del("DELETE FROM informacoes", $parametros);
     }
 
     public function read()
@@ -56,7 +70,7 @@ class crud
             <td>" . $consults[$key]->Nome . "</td> 
             <td>" . $consults[$key]->Idade . "</td> 
             <td>" . $consults[$key]->Profissao . "</td> 
-            <td><a href ='/update'>Up</a>//<a href ='/delete'>Del</a>//<a href ='/detalhe'>Detalhes</a></td> </tr>";
+            <td><a href ='/formupdate'>Up</a>//<a href ='/delete'>Del</a>//<a href ='/detalhe'>Detalhes</a></td> </tr>";
         }
     }
 }

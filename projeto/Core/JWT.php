@@ -19,5 +19,5 @@ print_r($decoded);
 
 $decoded_array = (array) $decoded;
 
-JWT::$leeway = 60; // $leeway in seconds
+JWT::$leeway = 60; 
 $decoded = JWT::decode($jwt, new Key($key, 'HS256'));

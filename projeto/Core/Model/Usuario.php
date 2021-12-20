@@ -3,12 +3,14 @@
 namespace Core\Model;
 
 use Core\Classes\Banco;
+use Firebase\JWT\JWT;
 
 
 class Usuario
 {
     public function login($email, $senha)
     {
+        $jwt = JWT::encode(['user' => $email, 'senha' => $senha], key(["chavezinha"]));
         $cone = new Banco();
 
         $params = [

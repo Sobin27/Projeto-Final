@@ -77,7 +77,6 @@ class Banco
     {
         if (!preg_match("/^UPDATE/i", $sql)) {
             throw new Exception("Base de dados - Não é uma instrução em update", 1);
-            
         }
 
         $this->ligar();
@@ -129,4 +128,36 @@ class Banco
         $this->desligar();
     }
 
+    public function del($sql, $parametros = null)
+    {
+        if (!preg_match("/^DELETE/i", $sql)) {
+            throw new Exception("Base de dados - Não é uma instrução em delete", 1);
+            //die("Base de dados - Não é uma instrução em select");
+        }
+
+        //Liga
+        $this->ligar();
+
+        $resultados = null;
+
+        try {
+            //Comunicação com o banco
+            if (!empty($parametros)) {
+                $executar = $this->ligacao->prepare($sql);
+                $executar->execute($parametros);
+            } else {
+                $executar = $this->ligacao->prepare($sql);
+                $executar->execute();
+            }
+        } catch (PDOException $e) {
+            //Caso exista erros
+            return false;
+        }
+
+        //Encerra a conexão com o banco de dados
+        $this->desligar();
+
+        //Retorna os resultados obtidos
+        return $resultados;
+    }
 }

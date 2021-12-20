@@ -54,11 +54,23 @@ class Main
 
     public function atualizar()
     {
-         
+        $editar = new crud();
+        $editar->update();
+    }
+
+    public function formatualizar()
+    {
+
+        Home::layout([
+            'Formatualizar',
+        ]);
     }
 
     public function deletar()
     {
+        Home::layout([
+            'FormDeletar',
+        ]);
     }
 
     public function logar()
@@ -88,5 +100,11 @@ class Main
         home::layout([
             'Detalhes',
         ]);
+    }
+
+    public function delete()
+    {
+        $del = new crud();
+        $del->delete();
     }
 }
